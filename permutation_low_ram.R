@@ -11,12 +11,12 @@ comb_muts=unique(c(B117,P1,B1351))
 
 
 comb_muts=sort(as.numeric(comb_muts))
-Spikesites=2:1272 #ignore start & stop codons- makes it minisculely more conservative
+Spikesites=2:1273 #ignore start & stop codons- makes it minisculely more conservative
 
 sim_num=100000000
 sim_hits=rep(0,length(Spikesites))
 for(i in 1:sim_num){
-  overlap=length(intersect(comb_muts,sample(Spikesites,20,replace=F)))
+  overlap=length(intersect(comb_muts,sample(Spikesites,length(in_vitro_sites),replace=F)))
   sim_hits[overlap+1]=sim_hits[overlap+1]+1
   if(!as.logical(i%%(sim_num/10))){
     print(paste(100*i/sim_num,'% complete'))
